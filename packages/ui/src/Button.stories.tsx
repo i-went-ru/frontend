@@ -36,5 +36,6 @@ Secondary.args = {
 
 export const Disabled: StoryFn<typeof Button> = Template.bind({});
 Disabled.args = {
-  variant: "disabled"
+  variant: "disabled",
+  disabled: true,
 };
