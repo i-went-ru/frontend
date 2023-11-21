@@ -12,6 +12,7 @@ coverage
 .next/
 out/
 build
+.swc/
 
 # misc
 .DS_Store
@@ -30,3 +31,6 @@ yarn-error.log*
 
 # turbo
 .turbo
+
+# ui
+dist/
