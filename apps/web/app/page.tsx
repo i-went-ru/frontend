@@ -1,9 +1,10 @@
-import {Button } from "ui";
+import Link from "next/link";
+import {Header } from "ui";
 
 export default function Page() {
   return (
     <div>
-      <Button children={<div>asdasd</div>} asChild={false}/>
+      <Header children={<div>asdasd</div>} links={[]} LinkComponent={Link}/>
     </div>
   );
 }
