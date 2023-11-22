@@ -26,5 +26,30 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ghcr.io/i-went-ru/backend:${{ github.run_number }}
+          tags: ghcr.io/i-went-ru/frontend:$GITHUB_SHA
           file: apps/web/Dockerfile
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Setup Kustomize
+      uses: imranismail/setup-kustomize@v1
+      with:
+        kustomize-version: "5.2.1"
+    - name: Update Kubernetes resources
+      run: |
+       cd infra/test
+       kustomize edit set image ghcr.io/i-went-ru/frontend:$GITHUB_SHA
+       cat kustomization.yaml
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -am "Bump docker tag"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
