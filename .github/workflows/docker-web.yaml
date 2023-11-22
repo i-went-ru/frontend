@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ghcr.io/i-went-ru/frontend:$GITHUB_SHA
+          tags: ghcr.io/i-went-ru/frontend:${{ github.sha }}
           file: apps/web/Dockerfile
   deploy:
     needs: build
@@ -42,7 +42,7 @@ jobs:
     - name: Update Kubernetes resources
       run: |
        cd infra/test
-       kustomize edit set image ghcr.io/i-went-ru/frontend:$GITHUB_SHA
+       kustomize edit set image ghcr.io/i-went-ru/frontend:${{ github.sha }}
        cat kustomization.yaml
     - name: Commit files
       run: |
