@@ -7,5 +7,3 @@ namespace: test-iwent
 images:
 - name: ghcr.io/i-went-ru/frontend
   newTag: 59f2b79309c1460cef4476fab751c8c45da9592b
-- name: ghcr.io/i-went-ru/frontend:4
-  newTag: "4"

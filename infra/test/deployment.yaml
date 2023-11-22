@@ -12,7 +12,7 @@ spec:
         app: frontend-service
     spec:
       containers:
-      - name: frontend-service
+      - name: frontend
         image: ghcr.io/i-went-ru/frontend:4
         imagePullPolicy: Always
         resources:
