@@ -12,12 +12,12 @@ spec:
         app: frontend-service
     spec:
       containers:
-      - name: frontend
+      - name: frontend-service
         image: ghcr.io/i-went-ru/frontend:4
         imagePullPolicy: Always
         resources:
           limits:
-            memory: "128Mi"
+            memory: "512Mi"
             cpu: "500m"
         ports:
         - containerPort: 3000

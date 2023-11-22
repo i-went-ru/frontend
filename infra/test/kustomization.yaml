@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
+- ingress.yaml
 namespace: test-iwent
 images:
 - name: ghcr.io/i-went-ru/frontend
