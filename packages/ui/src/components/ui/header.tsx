@@ -34,9 +34,9 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(
           </div>
           <div className="lg:flex lg:gap-x-12">
             {links.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm font-custom leading-6 text-black">
+              <LinkComponent key={item.name} href={item.href} className="text-sm font-custom leading-6 text-black">
                 {item.name}
-              </a>
+              </LinkComponent>
             ))}
           </div>
           <div className="flex flex-1 items-center justify-end gap-x-6">
