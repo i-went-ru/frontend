@@ -14,7 +14,7 @@ export default function Page() {
           <Button variant="default">Регистрация</Button>
         </>
       </Header>
-      <div className="bg-gray-200">
+      <div className="bg-[#f8f8f8]">
         <div className="container pt-12">
           <Carousel slides={[
             <Image
@@ -69,7 +69,7 @@ export default function Page() {
             labels={["exposkils", "rum", "Моя профессия IT", "altan school"]} />
         </div>
       </div>
-      <div className="bg-gray-200">
+      <div className="bg-[#f8f8f8]">
         <div className="container py-12">
           <div className="flex items-center">
             <div className="min-w-0 flex-1">
