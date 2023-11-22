@@ -1,10 +1,12 @@
+"use client";
 import Link from "next/link";
 import {Header } from "ui";
 
 export default function Page() {
   return (
     <div>
-      <Header children={<div>asdasd</div>} links={[]} LinkComponent={Link}/>
+      <Header links={[{name:"test", href:"localhost"}]} LinkComponent={Link}>
+      </Header>
     </div>
   );
 }
