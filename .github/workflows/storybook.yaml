@@ -4,9 +4,10 @@ name: "Chromatic"
 # Event for the workflow
 on:
   push:
+    branches: [ main ]
     paths:
-      - 'apps/docs'
-      - 'packages/ui'
+      - 'apps/docs/**'
+      - 'packages/ui/**'
 
 # List of jobs
 jobs:

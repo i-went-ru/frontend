@@ -11,6 +11,7 @@ describe('Button Component', () => {
     expect(buttonElement).toBeInTheDocument();
     expect(buttonElement).toHaveClass('bg-primary text-white');
   });
+  
 
   it('отображает второстепенную кнопку', () => {
     render(<Secondary />);
