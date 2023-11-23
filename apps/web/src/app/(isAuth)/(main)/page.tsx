@@ -6,14 +6,6 @@ import { Button, CardResident, Cards, Carousel, Footer, Header, Input } from "ui
 export default function Page() {
   return (
     <div>
-      <Header links={[{ name: 'Предстоящие экскурсии', href: '#' },
-      { name: 'Резиденты', href: '/residents' },
-      { name: 'Обратная связь', href: '#' },]} LinkComponent={Link}>
-        <>
-        <Button variant="secondary" asChild={true}><Link href={"/auth/login"}>Вход</Link></Button>
-          <Button variant="default" asChild={true}><Link href={"/auth/register"}>Регистрация</Link></Button>
-        </>
-      </Header>
       <div className="bg-[#f8f8f8]">
         <div className="container pt-12">
           <Carousel slides={[
@@ -145,11 +137,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <Footer LinkComponent={Link} links={[
-        { name: 'Предстоящие экскурсии', href: '#' },
-        { name: 'Резиденты', href: '/residents' },
-        { name: 'Обратная связь', href: '#' },
-      ]} />
     </div >
   );
 }

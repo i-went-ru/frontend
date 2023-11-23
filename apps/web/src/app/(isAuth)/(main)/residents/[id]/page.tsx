@@ -2,7 +2,7 @@
 import Link from "next/link";
 import useSWR from "swr";
 import { Button, CardResident1, Footer, Header, Input, SearchIcon, Select } from "ui";
-import { fetcherSWR } from "../../../utils/fetch";
+import { fetcherSWR } from "../../../../../utils/fetch";
 
 interface Resident {
     id: number

@@ -31,6 +31,8 @@ export interface floorProps
     VariantProps<typeof floorVariants> {
     paths: Paths[]
     markers: Marker[]
+    width?: number
+    height?: number
     setPaths?: (paths: Paths[]) => void
     setMarkers?: (markers: Marker[]) => void
     isEditResident: boolean
@@ -41,7 +43,7 @@ export interface floorProps
 }
 
 const Floor = React.forwardRef<HTMLElement, floorProps>(
-    ({ setPaths, paths, className, color, text, isEditResident, isEditMarker, setMarkers, markers, markerRadius, ...props }, ref) => {
+    ({ setPaths, width=400, height=400, paths, className, color, text, isEditResident, isEditMarker, setMarkers, markers, markerRadius, ...props }, ref) => {
         const [currentPoints, setCurrentPoints] = React.useState<Point[]>([]);
         const handleSvgClick = (e: React.MouseEvent<SVGSVGElement>) => {
             //@ts-ignore
@@ -88,7 +90,9 @@ const Floor = React.forwardRef<HTMLElement, floorProps>(
         return (
             <>
                 <svg
-                    width="400" height="400"
+                    // width={height} height={width}
+                    viewBox="0 0 400 400"
+                    className={cn(floorVariants({className }))}
                     onClick={(e) => {
                         if (isEditResident) {
                             handleSvgClick(e)

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { Button, Footer, Header, Input } from "ui";
-import { fetcher } from "../../../utils/fetch";
+import { fetcher } from "../../../../../utils/fetch";
 
 interface Token {
   auth_token: string
@@ -40,14 +40,6 @@ export default function Page() {
 
   return (
     <div>
-      <Header links={[{ name: 'Предстоящие экскурсии', href: '#' },
-      { name: 'Резиденты', href: '/residents' },
-      { name: 'Обратная связь', href: '#' },]} LinkComponent={Link}>
-        <>
-          <Button variant="secondary" asChild={true}><Link href={"/auth/login"}>Вход</Link></Button>
-          <Button variant="default" asChild={true}><Link href={"/auth/register"}>Регистрация</Link></Button>
-        </>
-      </Header>
       <div className="container ">
         <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 my-12 rounded-3xl">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -76,11 +68,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <Footer LinkComponent={Link} links={[
-        { name: 'Предстоящие экскурсии', href: '#' },
-        { name: 'Резиденты', href: '/residents' },
-        { name: 'Обратная связь', href: '#' },
-      ]} />
     </div>
   );
 }

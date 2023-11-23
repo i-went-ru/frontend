@@ -13,19 +13,20 @@ export interface CardResident1Props
     name: string
     image: string
     labels: string[]
+    description?: string
 }
 
 const CardResident1 = React.forwardRef<HTMLElement, CardResident1Props>(
-    ({ className, name, image, labels, ...props }, ref) => {
+    ({ className, name, image, labels, description, ...props }, ref) => {
         return (
             <div className="max-w-3xl mx-auto font-custom">
                 <div className="flex flex-wrap bg-white shadow-lg rounded-lg overflow-hidden">
                     <div className="w-full lg:w-1/2 p-5 flex flex-col">
                         <div className="flex">
                             <img className='w-14 h-14 object-cover rounded-full' src={image} />
-                            <h3 className="text-2xl font-medium text-gray-700 ml-4 mt-4">ООО ВороВоро</h3>
+                            <h3 className="text-2xl font-medium text-gray-700 ml-4 mt-4">{name}</h3>
                         </div>
-                        <p className="text-gray-600 mt-4">Мобильное приложение «Woro Woro» — сервис всех категорий объявлений</p>
+                        <p className="text-gray-600 mt-4">{description}</p>
                         <div className="mt-auto">
                             <div className="flex justify-between items-center mt-4">
                                 {labels.map((label, index) => (

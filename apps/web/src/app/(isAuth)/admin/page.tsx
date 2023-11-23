@@ -2,23 +2,9 @@
 import Link from "next/link";
 import useSWR from "swr";
 import { Button, CardResident1, Footer, Header, Input, SearchIcon, Select } from "ui";
-import { fetcherSWR } from "../../utils/fetch";
-
-interface Resident {
-    id: number
-    responsible: number
-    name: string
-    description: string
-    direction: string
-    floor: number
-    photos: string[]
-    tags: string[]
-    busy_days: string[]
-    free_days: string[]
-}
-
+import { fetcherSWR } from "../../../utils/fetch";
 export default function Page() {
-    const { data, error, isLoading } = useSWR<Resident[]>('/residents/', fetcherSWR)
+    const { data, error, isLoading } = useSWR('/residents/', fetcherSWR)
 
     return (
         <div>
@@ -33,8 +19,8 @@ export default function Page() {
             <div className="bg-[#EEEFF3] py-6">
                 <div className="container ">
                     <div className="mx-auto py-6 font-custom">
-                        <h2 className="text-xl tracking-tight text-black">Главная {'>'} резиденты</h2>
-                        <h1 className="text-3xl font-bold tracking-tight text-black">Резиденты</h1>
+                        <h2 className="text-xl tracking-tight text-black">Главная {'>'} этажи</h2>
+                        <h1 className="text-3xl font-bold tracking-tight text-black">7 Этаж</h1>
                     </div>
                 </div>
             </div>

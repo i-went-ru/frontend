@@ -6,7 +6,7 @@ const fetcher = <T>(url: string, method: string = 'GET', data?: any): Promise<T>
 
     });
     if (localStorage.getItem("token") !== null) {
-        headers.append("Authorization", localStorage.getItem("token"))
+        headers.append("Authorization", `Token ${localStorage.getItem("token")}`)
     }
 
     const config: RequestInit = {
