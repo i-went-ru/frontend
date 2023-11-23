@@ -26,7 +26,7 @@ export default function RootLayout({
         <NavigationProvider navigation={navigation} setNavigation={setNavigation}>
             <Sidebar navigations={navigation} logout={() => {
                 localStorage.removeItem("token")
-                setReset(true)
+                push("/")
             }} LinkComponent={Link}>
                 {children}
             </Sidebar>

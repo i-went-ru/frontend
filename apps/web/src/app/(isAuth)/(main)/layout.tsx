@@ -26,7 +26,7 @@ export default function RootLayout({
                 :  <Button size="icon" onClick={() => {
                     if(currentUser.user_type === "guest"){
                         push("/guest/")
-                    }else if(currentUser.user_type === "resident"){
+                    }else if(currentUser.user_type === "resident" || currentUser.user_type === "org"){
                         push("/admin/")
                     }
                 }}><UserIcon1/></Button>}
