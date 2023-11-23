@@ -28,10 +28,10 @@ const Carousel = React.forwardRef<HTMLElement, CarouselProps>(
                 </div>
                 <div className="absolute inset-0 flex items-center justify-between p-4">
                     <button onClick={prev} className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
-                        <ArrowLeftIcon />
+                        <ArrowLeftIcon className="h-12" />
                     </button>
                     <button onClick={next} className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
-                        <ArrowRightIcon />
+                        <ArrowRightIcon className="h-12" />
                     </button>
                 </div>
                 <div className='absolute bottom-4 right-0 left-0'>

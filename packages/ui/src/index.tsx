@@ -13,3 +13,5 @@ export * from "./components/ui/carousel";
 export * from "./components/ui/cards";
 export  * from "./components/ui/search";
 export  * from "./components/ui/cardResident1";
+export  * from "./components/ui/floor";
+export  * from "./components/ui/streetview2d";
