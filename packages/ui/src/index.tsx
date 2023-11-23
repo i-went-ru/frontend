@@ -11,3 +11,5 @@ export * from "./components/ui/footer";
 export * from "./components/ui/cardResident";
 export * from "./components/ui/carousel";
 export * from "./components/ui/cards";
+export  * from "./components/ui/search";
+export  * from "./components/ui/cardResident1";

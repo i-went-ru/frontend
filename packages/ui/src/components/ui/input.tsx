@@ -25,7 +25,7 @@ const inputVariables = cva(
 )
 
 const positionVariables = cva(
-    "absolute inset-y-0 right-0 flex items-center",
+    "absolute inset-y-0 flex items-center",
     {
         variants: {
             position: {

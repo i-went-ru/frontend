@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical and Horizontal Blocks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-10">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <!-- First block (tall) -->
+        <div class="flex bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/4">
+                    <img src="https://placehold.co/100x100" alt="Placeholder image for the logo" class="w-full h-auto">
+                </div>
+                <div class="md:w-3/4 p-5 flex items-center">
+                    <span class="text-xl text-gray-700">Основатель</span>
+                </div>
+            </div>
+            <div class="hidden md:block md:w-1/2 md:h-48 bg-gray-200"></div>
+        </div>
+        <!-- Second block (wide) -->
+        <div class="flex bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="md:w-1/4 p-5">
+                <img src="https://placehold.co/100x100" alt="Placeholder image for the logo" class="w-full h-auto">
+            </div>
+            <div class="md:w-3/4 p-5">
+                <span class="text-xl text-gray-700">Основатель</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

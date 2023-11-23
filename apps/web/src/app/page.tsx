@@ -10,8 +10,8 @@ export default function Page() {
       { name: 'Резиденты', href: '#' },
       { name: 'Обратная связь', href: '#' },]} LinkComponent={Link}>
         <>
-          <Button variant="secondary">Вход</Button>
-          <Button variant="default">Регистрация</Button>
+        <Button variant="secondary" asChild={true}><Link href={"/auth/login"}>Вход</Link></Button>
+          <Button variant="default" asChild={true}><Link href={"/auth/register"}>Регистрация</Link></Button>
         </>
       </Header>
       <div className="bg-[#f8f8f8]">
@@ -19,16 +19,22 @@ export default function Page() {
           <Carousel slides={[
             <Image
               key={0}
+              width={200}
+              height={200}
               alt="image 1"
               src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
             />,
             <Image
               key={1}
+              width={200}
+              height={200}
               src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
               alt="image 2"
             />,
             <Image
               key={2}
+              width={200}
+              height={200}
               src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
               alt="image 3"
             />,
@@ -87,7 +93,8 @@ export default function Page() {
                 key={id}
                 className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
               >
-                <Image src={"https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80"} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+                <Image              width={200}
+              height={200} src={"https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80"} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                 <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
 
@@ -133,7 +140,6 @@ export default function Page() {
                     </div>
                   </form>
                 </div>
-
               </div>
             </div>
           </div>
