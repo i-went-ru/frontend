@@ -41,7 +41,7 @@ export default function Page() {
   return (
     <div>
       <Header links={[{ name: 'Предстоящие экскурсии', href: '#' },
-      { name: 'Резиденты', href: '#' },
+      { name: 'Резиденты', href: '/residents' },
       { name: 'Обратная связь', href: '#' },]} LinkComponent={Link}>
         <>
           <Button variant="secondary" asChild={true}><Link href={"/auth/login"}>Вход</Link></Button>
@@ -78,7 +78,7 @@ export default function Page() {
       </div>
       <Footer LinkComponent={Link} links={[
         { name: 'Предстоящие экскурсии', href: '#' },
-        { name: 'Резиденты', href: '#' },
+        { name: 'Резиденты', href: '/residents' },
         { name: 'Обратная связь', href: '#' },
       ]} />
     </div>

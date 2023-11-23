@@ -23,7 +23,7 @@ export default function Page() {
     return (
         <div>
             <Header links={[{ name: 'Предстоящие экскурсии', href: '#' },
-            { name: 'Резиденты', href: '#' },
+            { name: 'Резиденты', href: '/residents' },
             { name: 'Обратная связь', href: '#' },]} LinkComponent={Link}>
                 <>
                     <Button variant="secondary" asChild={true}><Link href={"/auth/login"}>Вход</Link></Button>
@@ -60,19 +60,19 @@ export default function Page() {
                 </section>
                 <div className="mt-8 grid grid-cols-4 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-2 lg:gap-x-8">
                     {isLoading ? "loading" : ""}
-                    {!isLoading && data ? 
-                    data.map((resident, index) => (
-                        <CardResident1 name={resident.name} key={index}
-                        image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                        labels={resident.tags} />
-                    ))
-                :""
-                }
+                    {!isLoading && data ?
+                        data.map((resident, index) => (
+                            <CardResident1 name={resident.name} key={index}
+                                image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+                                labels={resident.tags} />
+                        ))
+                        : ""
+                    }
                 </div>
             </div>
             <Footer LinkComponent={Link} links={[
                 { name: 'Предстоящие экскурсии', href: '#' },
-                { name: 'Резиденты', href: '#' },
+                { name: 'Резиденты', href: '/residents' },
                 { name: 'Обратная связь', href: '#' },
             ]} />
         </div>

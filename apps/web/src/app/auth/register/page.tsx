@@ -13,7 +13,7 @@ enum Type {
     not = "not"
 }
 export default function Page() {
-    const {push} = useRouter();
+    const { push } = useRouter();
     const [type, setType] = useState<Type>(Type.not)
     const [username, setUsername] = useState("")
     const [fio, setFio] = useState("")
@@ -58,9 +58,9 @@ export default function Page() {
                 username: username,
                 password: password,
                 phone: phone,
-            }, )
+            },)
             push("/auth/login")
-        }catch(error:any){
+        } catch (error: any) {
             toast.error('Ошибка создания пользователя', {
                 position: "bottom-right",
                 autoClose: 5000,
@@ -78,11 +78,11 @@ export default function Page() {
     return (
         <div>
             <Header links={[{ name: 'Предстоящие экскурсии', href: '#' },
-            { name: 'Резиденты', href: '#' },
+            { name: 'Резиденты', href: '/residents' },
             { name: 'Обратная связь', href: '#' },]} LinkComponent={Link}>
                 <>
-                <Button variant="secondary" asChild={true}><Link href={"/auth/login"}>Вход</Link></Button>
-          <Button variant="default" asChild={true}><Link href={"/auth/register"}>Регистрация</Link></Button>
+                    <Button variant="secondary" asChild={true}><Link href={"/auth/login"}>Вход</Link></Button>
+                    <Button variant="default" asChild={true}><Link href={"/auth/register"}>Регистрация</Link></Button>
                 </>
             </Header>
             <div className="container ">
@@ -141,7 +141,7 @@ export default function Page() {
             </div>
             <Footer LinkComponent={Link} links={[
                 { name: 'Предстоящие экскурсии', href: '#' },
-                { name: 'Резиденты', href: '#' },
+                { name: 'Резиденты', href: '/residents' },
                 { name: 'Обратная связь', href: '#' },
             ]} />
         </div>
