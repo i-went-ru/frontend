@@ -1,6 +1,4 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Floor } from "./components/ui/floor";
-import floor7 from "../style/floors/floor7.svg";
 import { StreetView2D } from "./components/ui/streetview2d";
 
 const meta: Meta<typeof StreetView2D> = {

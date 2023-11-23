@@ -3,6 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "../../lib/utils"
 import { Button } from "./button"
+import { Cabinet } from "./cabinet"
 
 const floorVariants = cva(
 )
@@ -11,6 +12,7 @@ interface Paths {
     d: string
     text?: string
     color: string
+    id: number
 }
 
 interface Point {
@@ -24,6 +26,7 @@ interface Marker {
     imageURL?: string
     floor?: number
     color: string
+    current?: boolean
 }
 
 export interface floorProps
@@ -40,37 +43,58 @@ export interface floorProps
     isEditMarker: boolean
     text?: string
     color?: string
+
+    //@ts-ignore
+    menu: React.ReactHTMLElement
 }
 
 const Floor = React.forwardRef<HTMLElement, floorProps>(
-    ({ setPaths, width=400, height=400, paths, className, color, text, isEditResident, isEditMarker, setMarkers, markers, markerRadius, ...props }, ref) => {
+    ({ setPaths, width = 400, height = 400, paths, menu,className, color, text, isEditResident, isEditMarker, setMarkers, markers, markerRadius, ...props }, ref) => {
+        const svgRef = React.useRef(null);
         const [currentPoints, setCurrentPoints] = React.useState<Point[]>([]);
         const handleSvgClick = (e: React.MouseEvent<SVGSVGElement>) => {
+            const svg = e.currentTarget;
             //@ts-ignore
-            const { offsetX, offsetY } = e.nativeEvent;
-            setCurrentPoints([...currentPoints, { x: offsetX, y: offsetY }]);
+            const pt = svg.createSVGPoint();
+
+            pt.x = e.clientX;
+            pt.y = e.clientY;
+
+            //@ts-ignore
+            const svgPoint = pt.matrixTransform(svg.getScreenCTM().inverse());
+            setCurrentPoints([...currentPoints, { x: svgPoint.x, y: svgPoint.y }]);
         };
 
         const handleSvgClickMarker = (e: React.MouseEvent<SVGSVGElement>) => {
+            const svg = e.currentTarget;
             //@ts-ignore
-            const { offsetX, offsetY } = e.nativeEvent;
-            setMarkers!!([...markers, { point: {x: offsetX, y: offsetY}, onClick: () => {}, color: color!! }]);
-          };
+            const pt = svg.createSVGPoint();
 
-        const getCenterFromPath = (pathD: string) => {
-            const matches = pathD.match(/[L|M] (\d+ \d+)/g);
+            pt.x = e.clientX;
+            pt.y = e.clientY;
+
+            //@ts-ignore
+            const svgPoint = pt.matrixTransform(svg.getScreenCTM().inverse());
+            setMarkers!!([...markers, { point: { x: svgPoint.x, y: svgPoint.y }, color: color!!, onClick: () => { } }]);
+        };
+
+        const getCenterFromPath = (pathD: any, svgElement: any) => {
+            const matches = pathD.match(/\d+\.\d+ \d+\.\d+/g);
             if (!matches) return { x: 0, y: 0 };
 
-            const points = matches.map(match => {
-                const [x, y] = match.split(' ').map(Number).slice(-2);
+            const points = matches.map((match: any) => {
+                const [x, y] = match.split(' ').map(Number);
                 return { x, y };
             });
-
-            const centerX = points.reduce((sum, point) => sum + point.x, 0) / points.length;
-            const centerY = points.reduce((sum, point) => sum + point.y, 0) / points.length;
-
-            return { x: centerX, y: centerY };
+            const centerX = points.reduce((sum: any, point: any) => sum + point.x, 0) / points.length;
+            const centerY = points.reduce((sum: any, point: any) => sum + point.y, 0) / points.length;
+            return {
+                x: centerX,
+                y: centerY
+            };
         };
+
+
 
         const handleCompletePolygon = () => {
             if (currentPoints.length < 3) return;
@@ -79,7 +103,7 @@ const Floor = React.forwardRef<HTMLElement, floorProps>(
                 return acc + `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y} `;
             }, '') + 'Z';
 
-            setPaths!!([...paths, { d: pathD, color: color!!, text: text }]);
+            setPaths!!([...paths, { id:0, d: pathD, color: color!!, text: text }]);
             setCurrentPoints([]);
         };
 
@@ -91,26 +115,24 @@ const Floor = React.forwardRef<HTMLElement, floorProps>(
             <>
                 <svg
                     // width={height} height={width}
+                    ref={svgRef}
                     viewBox="0 0 400 400"
-                    className={cn(floorVariants({className }))}
+                    className={cn(floorVariants({ className }))}
                     onClick={(e) => {
                         if (isEditResident) {
                             handleSvgClick(e)
                         }
-                        if (isEditMarker){
+                        if (isEditMarker) {
                             handleSvgClickMarker(e)
                         }
                     }}
                 >
                     {props.children}
                     {paths.map((path, i) => {
-                        const center = getCenterFromPath(path.d);
-                        return (<React.Fragment key={i}>
-                            <path id={`path-${i}`} key={i} d={path.d} fill={path.color} onClick={() => console.log("Test")} />
-                            <text x={center.x} y={center.y} fontSize="6" textAnchor="middle" dominantBaseline="central">
-                                {path.text}
-                            </text>
-                        </React.Fragment>)
+                        const center = svgRef.current ? getCenterFromPath(path.d, svgRef.current) : { x: 0, y: 0 };
+                        return (
+                            <Cabinet idCabinet={path.id} menu={menu} index={i} x={center.x} y={center.y} path={path} />
+                        )
 
                     })}
                     {markers.map((marker, index) => (
@@ -122,6 +144,7 @@ const Floor = React.forwardRef<HTMLElement, floorProps>(
                             fill={marker.color}
                             onClick={() => marker.onClick()}
                             style={{ cursor: 'pointer' }}
+                            className={[marker.current ? "fill-red-200": ""].join(" ")}
                         />
                     ))}
 
@@ -148,3 +171,4 @@ const Floor = React.forwardRef<HTMLElement, floorProps>(
 Floor.displayName = "Fllor"
 
 export { Floor, floorVariants }
+export type { Paths, Marker, Point }

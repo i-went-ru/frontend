@@ -16,3 +16,5 @@ export * from "./components/ui/cardResident1";
 export * from "./components/ui/floor";
 export * from "./components/ui/streetview2d";
 export * from "./components/ui/usericon";
+export * from "./components/ui/sidebar";
+export * from "./components/ui/spinner";

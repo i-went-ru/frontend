@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from 'next/navigation'
 import { useContext, useState } from "react";
 import { Button, Footer, Header } from "ui";
 import { AuthContext } from "../AuthContext";
@@ -11,7 +12,8 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const {isAuthenticated} = useContext(AuthContext)
+    const {isAuthenticated, currentUser} = useContext(AuthContext)
+    const { push } = useRouter();
     return (
         <>
             <Header links={[{ name: 'Предстоящие экскурсии', href: '#' },
@@ -21,7 +23,13 @@ export default function RootLayout({
                     <Button variant="secondary" asChild={true}><Link href={"/auth/login"}>Вход</Link></Button>
                     <Button variant="default" asChild={true}><Link href={"/auth/register"}>Регистрация</Link></Button>
                 </>
-                :  <Button size="icon"><UserIcon1/></Button>}
+                :  <Button size="icon" onClick={() => {
+                    if(currentUser.user_type === "guest"){
+                        push("/guest/")
+                    }else if(currentUser.user_type === "resident"){
+                        push("/admin/")
+                    }
+                }}><UserIcon1/></Button>}
             </Header>
             {children}
 

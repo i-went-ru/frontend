@@ -24,7 +24,7 @@ const CardResident1 = React.forwardRef<HTMLElement, CardResident1Props>(
                     <div className="w-full lg:w-1/2 p-5 flex flex-col">
                         <div className="flex">
                             <img className='w-14 h-14 object-cover rounded-full' src={image} />
-                            <h3 className="text-2xl font-medium text-gray-700 ml-4 mt-4">{name}</h3>
+                            <h3 className="text-lg font-medium text-gray-700 ml-4 mt-4">{name}</h3>
                         </div>
                         <p className="text-gray-600 mt-4">{description}</p>
                         <div className="mt-auto">

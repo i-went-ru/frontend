@@ -27,7 +27,7 @@ const Header = React.forwardRef<HTMLElement, HeaderProps>(
       <header className="bg-white" ref={ref}>
         <nav className={cn(headerVariables({ className }))} aria-label="Global">
           <div className="flex lg:flex-1">
-            <LinkComponent href="#" className="-m-1.5 p-1.5">
+            <LinkComponent href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">IWent</span>
               <img className="h-8 w-auto" src={LinkComponent === 'a' ? logo : logo.src} />
             </LinkComponent>

@@ -1,13 +1,9 @@
 "use client";
-import Link from "next/link";
-import { SketchPicker } from 'react-color';
 import { useRouter } from 'next/navigation'
-import { Button, Footer, Header, Input, Select } from "ui";
-import { fetcher } from "../../../../../utils/fetch";
+import { Button, Input, } from "ui";
 import { toast } from "react-toastify";
 import { FormEvent, useState } from "react";
-import SVGDrawing from "../../../../../components/SVGDrawing";
-
+import { fetcher } from "../../../../../../utils/fetch";
 
 export default function Page() {
     const { push } = useRouter();
@@ -33,7 +29,7 @@ export default function Page() {
                 // busy_days: busy_days,
                 // free_days: free_days
             },)
-            push("/residents")
+            push("/admin/residents")
         } catch (error: any) {
             toast.error('Ошибка создания резидента', {
                 position: "bottom-right",
@@ -50,14 +46,6 @@ export default function Page() {
     }
     return (
         <div>
-            <Header links={[{ name: 'Предстоящие экскурсии', href: '#' },
-            { name: 'Резиденты', href: '/residents' },
-            { name: 'Обратная связь', href: '#' },]} LinkComponent={Link}>
-                <>
-                    <Button variant="secondary" asChild={true}><Link href={"/auth/login"}>Вход</Link></Button>
-                    <Button variant="default" asChild={true}><Link href={"/auth/register"}>Регистрация</Link></Button>
-                </>
-            </Header>
             <div className="container ">
                 <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 my-12 rounded-3xl">
                     <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -85,11 +73,7 @@ export default function Page() {
                     </div>
                 </div>
             </div>
-            <Footer LinkComponent={Link} links={[
-                { name: 'Предстоящие экскурсии', href: '#' },
-                { name: 'Резиденты', href: '/residents' },
-                { name: 'Обратная связь', href: '#' },
-            ]} />
+
         </div>
     );
 }

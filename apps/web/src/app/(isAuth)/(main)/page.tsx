@@ -11,23 +11,23 @@ export default function Page() {
           <Carousel slides={[
             <Image
               key={0}
-              width={200}
-              height={200}
+              width={2048}
+              height={720}
               alt="image 1"
-              src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+              src="/bg1.png"
             />,
             <Image
               key={1}
-              width={200}
-              height={200}
-              src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
+              width={2048}
+              height={720}
+              src="/bg1.png"
               alt="image 2"
             />,
             <Image
               key={2}
-              width={200}
-              height={200}
-              src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
+              width={2048}
+              height={720}
+              src="/bg1.png"
               alt="image 3"
             />,
           ]} />
@@ -54,17 +54,17 @@ export default function Page() {
         </div>
         <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <CardResident name="Биотехнологии" image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-            labels={["exposkils", "rum", "Моя профессия IT", "altan school"]} />
+            labels={["exposkils", "Моя профессия IT", "altan school"]} />
           <CardResident name="Произоводство" image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-            labels={["exposkils", "rum", "Моя профессия IT", "altan school"]} />
+            labels={["exposkils", "Моя профессия IT", "altan school"]} />
           <CardResident name="Строительноство" image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-            labels={["exposkils", "rum", "Моя профессия IT", "altan school"]} />
+            labels={["exposkils", "Моя профессия IT", "altan school"]} />
           <CardResident name="Транспорт" image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-            labels={["exposkils", "rum", "Моя профессия IT", "altan school"]} />
+            labels={["exposkils", "Моя профессия IT", "altan school"]} />
           <CardResident name="Информационные технологии" image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-            labels={["exposkils", "rum", "Моя профессия IT", "altan school"]} />
+            labels={["exposkils", "Моя профессия IT", "altan school"]} />
           <CardResident name="Дополнительное образование" image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-            labels={["exposkils", "rum", "Моя профессия IT", "altan school"]} />
+            labels={["exposkils", "Моя профессия IT", "altan school"]} />
         </div>
       </div>
       <div className="bg-[#f8f8f8]">
@@ -86,7 +86,7 @@ export default function Page() {
                 className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
               >
                 <Image              width={200}
-              height={200} src={"https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80"} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+              height={200} src={"/bg1.png"} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
                 <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
 

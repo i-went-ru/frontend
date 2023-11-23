@@ -1,4 +1,4 @@
-
+const { mauve, violet } = require('@radix-ui/colors');
 
 module.exports = function (app, options) {
     let config = {
@@ -78,6 +78,8 @@ module.exports = function (app, options) {
               DEFAULT: "hsl(var(--card))",
               foreground: "hsl(var(--card-foreground))",
             },
+            ...mauve,
+            ...violet,    
           },
           borderRadius: {
             lg: "var(--radius)",
