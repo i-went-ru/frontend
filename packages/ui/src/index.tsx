@@ -18,3 +18,4 @@ export * from "./components/ui/streetview2d";
 export * from "./components/ui/usericon";
 export * from "./components/ui/sidebar";
 export * from "./components/ui/spinner";
+export * from "./components/ui/residentInfoModal";

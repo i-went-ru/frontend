@@ -3,11 +3,11 @@ import { useRouter } from 'next/navigation'
 import { Button, Input, ListItem, Select, } from "ui";
 import { toast } from "react-toastify";
 import { FormEvent, useEffect, useState } from "react";
+import { fetcher, fetcherSWR } from "../../../../../../utils/fetch";
 import useSWR from 'swr';
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { fetcher, fetcherSWR } from '../../../../../utils/fetch';
 
 const FormatTour = [
     { value: "Обзорная экскурция", key: "overwiew", id: 0 },
@@ -39,7 +39,6 @@ export default function Page() {
     const [format, setFormnat] = useState(FormatTour[0])
     const [lists, setLists] = useState<ListItem[]>([])
     const [listCurrent, setListCurrent] = useState<ListItem>(null)
-    const [guest, setGuest] = useState("0")
     useEffect(() => {
         if (data) {
             const newLists = data.map(resident => ({
@@ -59,14 +58,14 @@ export default function Page() {
             await fetcher("/tours/", 'POST', {
                 begin_datetime: startDate.toISOString(),
                 end_datetime: endDate.toISOString(),
-                guest_count: guest,
-                status: "moderation",
+                guest_count: 1,
+                status: "sended",
                 format: format.key,
                 comment: comment,
                 residents: [listCurrent.id],
                 client: data.filter((r) => r.id === listCurrent.id)[0].responsible
             },)
-            push("/guest")
+            push("/admin/tour")
         } catch (error: any) {
             toast.error('Ошибка создания экскурсии', {
                 position: "bottom-right",
@@ -127,7 +126,6 @@ export default function Page() {
                                         dateFormat="MMMM d, yyyy h:mm aa"
                                     />
                                 </div>
-                                <Input variant="default" value={guest+""} label="Количество людей" placeholder="" onChange={(e) => { setGuest(e.target.value) }} />
                                 <Input variant="default" value={comment} label="Комментарий" placeholder="" onChange={(e) => { setComment(e.target.value) }} />
                                 <div>
                                     <Button

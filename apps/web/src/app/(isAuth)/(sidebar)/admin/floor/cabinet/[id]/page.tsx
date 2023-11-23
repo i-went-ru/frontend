@@ -1,13 +1,11 @@
 "use client";
-import Link from "next/link";
-import useSWR from "swr";
 import { SketchPicker } from 'react-color';
 import { useRouter } from 'next/navigation'
 import { Button, Floor, Input, ListItem, Select, } from "ui";
 import { toast } from "react-toastify";
 import { FormEvent, useEffect, useState } from "react";
-import { fetcher, fetcherSWR } from "../../../../../../utils/fetch";
 import * as ContextMenu from '@radix-ui/react-context-menu';
+import { fetcher } from "../../../../../../../utils/fetch";
 
 interface Resident {
     id: number
@@ -22,27 +20,11 @@ interface Resident {
     free_days: string[]
 }
 
-export default function Page() {
+export default function Page({ params: { id } }: any) {
     const { push } = useRouter();
-    const { data, isLoading } = useSWR<Resident[]>("/residents/", fetcherSWR)
-    const [name, setName] = useState("")
     const [cabinet_number, setCabinetNumber] = useState("")
     const [color, setColor] = useState("#000")
     const [path, setPath] = useState([])
-    const [lists, setLists] = useState<ListItem[]>([])
-    const [listCurrent, setListCurrent] = useState<ListItem>(null)
-    useEffect(() => {
-        if (data) {
-            const newLists = data.map(resident => ({
-                value: resident.name,
-                id: resident.id
-            }));
-            setLists(newLists);
-            if (newLists.length > 0) {
-                setListCurrent(newLists[0]);
-            }
-        }
-    }, [data]);
     
     const handleColorChange = ({ hex }) => { setColor(hex) }
 
@@ -50,12 +32,8 @@ export default function Page() {
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!listCurrent) {
-            return
-        }
         try {
-            await fetcher("/cabinets/", 'POST', {
-                resident: listCurrent.id,
+            await fetcher(`/cabinets/${id}/`, 'PATCH', {
                 cabinet_number: cabinet_number,
                 color: color,
                 path: path[0].d,
@@ -81,14 +59,13 @@ export default function Page() {
                 <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 my-12 rounded-3xl">
                     <div className="sm:mx-auto sm:w-full sm:max-w-md">
                         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-black font-custom">
-                            Создание кабинета
+                           Изменение кабинета
                         </h2>
                     </div>
 
                     <div className="my-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
                         <div className="bg-second px-6 py-12 shadow sm:rounded-lg sm:px-12">
                             <form className="space-y-6" method="POST" onSubmit={onSubmit}>
-                                {data && listCurrent && <Select lists={lists} onChangeSelect={(item) => { setListCurrent(item) }} valueSelect={listCurrent} label="Резидент" placeholder="" onChange={(e) => { setName(e.target.value) }} />}
                                 <Input variant="default" value={cabinet_number} label="Номер кабинета" placeholder="" onChange={(e) => { setCabinetNumber(e.target.value) }} />
                                 <SketchPicker onChangeComplete={handleColorChange} color={color} />
                                 <Floor markers={[]}
@@ -123,7 +100,7 @@ export default function Page() {
                                         type="submit"
                                         variant="default"
                                         size="wfull"
-                                    >Создать</Button>
+                                    >Изменить</Button>
                                 </div>
                             </form>
                         </div>

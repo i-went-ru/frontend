@@ -1,20 +1,30 @@
 "use client";
 import { useRouter } from 'next/navigation'
-import { Button, Input, } from "ui";
+import { Button, Input, Select, } from "ui";
 import { toast } from "react-toastify";
 import { FormEvent, useState } from "react";
 import { fetcher } from "../../../../../../utils/fetch";
+import { XMarkIcon } from '@heroicons/react/20/solid';
+
+const DirectionType = [
+    { value: "ИТ", id: 0, key: "it" },
+    { value: "Производство", id: 1, key: "production" },
+    { value: "Энергоэффективность", id: 2, key: "energy_efficiency" },
+    { value: "Биотехнологии", id: 3, key: "bio_technologies" },
+    { value: "Строительство", id: 4, key: "building" },
+]
 
 export default function Page() {
     const { push } = useRouter();
     const [responsible, setResponsible] = useState(1)
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
-    const [direction, setDirection] = useState("")
+    const [direction, setDirection] = useState(DirectionType[0])
     const [floor, setFloor] = useState(7)
-    const [tags, setTags] = useState(["test"])
-    const [busy_days, setBusyDays] = useState([{ "date": "2023-11-23" }])
-    const [free_days, setFreeDays] = useState([{ "date": "2023-11-23" }])
+    const [tags, setTags] = useState([])
+    const [tag, setTag] = useState("")
+    const [busy_days, setBusyDays] = useState([])
+    const [free_days, setFreeDays] = useState([])
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -23,7 +33,7 @@ export default function Page() {
                 responsible: responsible,
                 name: name,
                 description: description,
-                direction: direction,
+                direction: direction.key,
                 floor: floor,
                 tags: tags,
                 // busy_days: busy_days,
@@ -59,7 +69,29 @@ export default function Page() {
                             <form className="space-y-6" method="POST" onSubmit={onSubmit}>
                                 <Input variant="default" value={name} label="Название" placeholder="" onChange={(e) => { setName(e.target.value) }} />
                                 <Input variant="default" value={description} label="Описание" placeholder="" onChange={(e) => { setDescription(e.target.value) }} />
-                                <Input variant="default" value={direction} label="Направление" placeholder="" onChange={(e) => { setDirection(e.target.value) }} />
+                                <Select lists={DirectionType} onChangeSelect={(direction) => {
+                                    //@ts-ignore
+                                    setDirection(direction)
+                                }} valueSelect={direction} label='Направление' />
+                                <div className='flex items-end'>
+                                    <Input variant="default" value={tag} label="Теги" placeholder="" onChange={(e) => { setTag(e.target.value) }} />
+                                    <Button className='mb-1.5 ml-1' type="button" onClick={() => {
+                                        setTags([...tags, tag])
+                                    }}>Добавить</Button>
+                                </div>
+                                <div className='px-2 pt-2 pb-11 mb-3 flex flex-wrap rounded-lg border-primary border-2 font-custom'>
+                                    {tags.map((tag, index) => (
+                                        <span key={index}
+                                            className="flex flex-wrap pl-4 pr-2 py-2 m-1 justify-between items-center text-sm font-medium rounded-xl cursor-pointer  bg-secondary text-primary">
+                                            {tag}
+                                            <XMarkIcon className="h-5 w-5 ml-3" onClick={(e) => {
+                                                e.preventDefault();
+                                                console.log(tags.filter((tag1, index1) => index1 !== index))
+                                                setTags(tags.filter((tag1, index1) => index1 !== index))
+                                            }} />
+                                        </span>
+                                    ))}
+                                </div>
                                 <div>
                                     <Button
                                         type="submit"

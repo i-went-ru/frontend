@@ -22,14 +22,15 @@ export interface CabinetProps
     y: number
     menu: React.ReactNode
     idCabinet: number
+    click: () => void
 }
 
 const Cabinet = React.forwardRef<HTMLElement, CabinetProps>(
-    ({ index, path, x, y, menu, idCabinet,...props }, ref) => {
+    ({ index, path, x, y, menu, idCabinet, click,...props }, ref) => {
         return (
             <React.Fragment>
                 <ContextMenuCabinet idCabinet={idCabinet} menu={menu}>
-                    <path id={`path-${index}`} d={path.d} fill={path.color} onClick={() => console.log("Test")} className="hover:fill-blue-500 transition duration-150 ease-in-out" />
+                    <path id={`path-${index}`} d={path.d} fill={path.color} onClick={() => click()} className="hover:fill-blue-500 transition duration-150 ease-in-out" />
                 </ContextMenuCabinet>
                 <text x={x} y={y} fontSize="6" textAnchor="middle" dominantBaseline="central">
                     {path.text}

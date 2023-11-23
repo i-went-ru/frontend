@@ -12,6 +12,7 @@ interface Paths {
     d: string
     text?: string
     color: string
+    onClick?: () => void
     id: number
 }
 
@@ -27,6 +28,7 @@ interface Marker {
     floor?: number
     color: string
     current?: boolean
+    id: number
 }
 
 export interface floorProps
@@ -75,7 +77,7 @@ const Floor = React.forwardRef<HTMLElement, floorProps>(
 
             //@ts-ignore
             const svgPoint = pt.matrixTransform(svg.getScreenCTM().inverse());
-            setMarkers!!([...markers, { point: { x: svgPoint.x, y: svgPoint.y }, color: color!!, onClick: () => { } }]);
+            setMarkers!!([...markers, { point: { x: svgPoint.x, y: svgPoint.y }, color: color!!, onClick: () => { }, id: 0}]);
         };
 
         const getCenterFromPath = (pathD: any, svgElement: any) => {
@@ -131,7 +133,7 @@ const Floor = React.forwardRef<HTMLElement, floorProps>(
                     {paths.map((path, i) => {
                         const center = svgRef.current ? getCenterFromPath(path.d, svgRef.current) : { x: 0, y: 0 };
                         return (
-                            <Cabinet idCabinet={path.id} menu={menu} index={i} x={center.x} y={center.y} path={path} />
+                            <Cabinet idCabinet={path.id} menu={menu} index={i} x={center.x} y={center.y} path={path} click={() => path.onClick()} />
                         )
 
                     })}

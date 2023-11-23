@@ -84,9 +84,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                                                                 <a
                                                                     href={item.href}
                                                                     className={[
-                                                                        item.current
-                                                                            ? 'text-indigo-600'
-                                                                            : 'text-gray-700 hover:text-indigo-600 ',
+                                                                            'text-gray-700',
                                                                         'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                                                     ].join(" ")}
                                                                 >
@@ -141,9 +139,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                                                 <a
                                                     href={item.href}
                                                     className={[
-                                                        item.current
-                                                            ? ' text-indigo-600'
-                                                            : 'text-gray-700 hover:text-indigo-600 ',
+                                                        'text-gray-700',
                                                         'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                                     ].join(" ")}
                                                 >

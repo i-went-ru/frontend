@@ -2,11 +2,10 @@
 import Link from "next/link";
 import useSWR from "swr";
 import { Dialog, Transition } from '@headlessui/react'
-import { Button, Floor, Marker, Paths, Point, StreetView2D } from "ui";
-import React, { Fragment, useEffect, useState } from 'react';
+import { Button, Floor, Marker, Paths, Point, ResidentInfo, ResidentModal, StreetView2D } from "ui";
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { fetcherSWR } from "../../../../../utils/fetch";
 import AdminContextMenu from "../../../../../components/AdminContextMenu";
-
 
 interface Cabinet {
     id: number
@@ -14,6 +13,13 @@ interface Cabinet {
     cabinet_number: string
     color: string
     path: string
+    resident_info: ResidentInfo
+}
+
+interface ResidentInfo {
+    name: string
+    description: string
+    direction: string
 }
 
 interface MapPhoto {
@@ -21,6 +27,7 @@ interface MapPhoto {
     y: number
     color: string
     image: string
+    id: number
 }
 
 interface Func {
@@ -36,7 +43,10 @@ export default function Page() {
     const [paths, setPaths] = useState<Paths[]>([])
     const [markers, setMarkers] = useState<Marker[]>([])
     const [open, setOpen] = useState(false);
+    const [openInfo, setOpenInfo] = useState(false);
     const [currentMarker, setCurrentMarker] = useState<Marker>(null)
+    //@ts-ignore
+    const [resident, setResident] = useState<ResidentModal>({})
     const [func, setFunc] = useState<Func>({
         leftClick: () => { },
         rightClick: () => { },
@@ -52,6 +62,15 @@ export default function Page() {
                 text: path.cabinet_number + "",
                 color: path.color,
                 id: path.id,
+                onClick: () => {
+                    setResident({
+                        name: path.resident_info.name,
+                        description: path.resident_info.description,
+                        direction: path.resident_info.direction,
+                        cabinet_number: path.cabinet_number,
+                    })
+                    setOpenInfo(true)
+                }
             }));
             setPaths(newPaths);
         }
@@ -65,6 +84,7 @@ export default function Page() {
                 color: marker.color,
                 imageURL: marker.image,
                 current: false,
+                id: marker.id,
             }));
             const newMarkersMap = newMarkers.map((marker) => {
                 marker.onClick = () => {
@@ -174,7 +194,7 @@ export default function Page() {
                 </Button>
             </div>
             <div>
-
+                <ResidentInfo open={openInfo} setOpen={setOpenInfo} resident={resident}/>
                 <Transition appear show={open} as={Fragment}>
                     <Dialog as="div" className="relative z-10" onClose={closeModal}>
                         <Transition.Child
