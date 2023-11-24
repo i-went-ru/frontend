@@ -51,9 +51,9 @@ export default function Page() {
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                             Этаж
                                         </th>
-                                        <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-3">
+                                        {/* <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-3">
                                             <span className="sr-only">Изменить</span>
-                                        </th>
+                                        </th> */}
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white">
@@ -70,11 +70,11 @@ export default function Page() {
                                                 </td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.direction}</td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.floor}</td>
-                                                <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
+                                                {/* <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                                                     <Button>
                                                         Изменить
                                                     </Button>
-                                                </td>
+                                                </td> */}
                                             </tr>
                                         ))}
                                     </Fragment>

@@ -16,9 +16,9 @@ export default function RootLayout({
     const { push } = useRouter();
     return (
         <>
-            <Header links={[{ name: 'Предстоящие экскурсии', href: '#' },
+            <Header links={[{ name: 'Предстоящие экскурсии', href: '/tour' },
             { name: 'Резиденты', href: '/residents' },
-            { name: 'Обратная связь', href: '#' },]} LinkComponent={Link}>
+            { name: 'Обратная связь', href: '/feedback' },]} LinkComponent={Link}>
 {               !isAuthenticated ? <>
                     <Button variant="secondary" asChild={true}><Link href={"/auth/login"}>Вход</Link></Button>
                     <Button variant="default" asChild={true}><Link href={"/auth/register"}>Регистрация</Link></Button>
@@ -34,9 +34,9 @@ export default function RootLayout({
             {children}
 
             <Footer LinkComponent={Link} links={[
-                { name: 'Предстоящие экскурсии', href: '#' },
+                { name: 'Предстоящие экскурсии', href: '/tour' },
                 { name: 'Резиденты', href: '/residents' },
-                { name: 'Обратная связь', href: '#' },
+                { name: 'Обратная связь', href: '/feedback' },
             ]} />
         </>
     );

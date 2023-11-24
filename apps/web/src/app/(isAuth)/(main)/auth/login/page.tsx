@@ -1,16 +1,18 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { Button, Footer, Header, Input } from "ui";
 import { fetcher } from "../../../../../utils/fetch";
+import { AuthContext } from "../../../AuthContext";
 
 interface Token {
   auth_token: string
 }
 export default function Page() {
   const { push } = useRouter();
+  const {setIsAuthenticated} = useContext(AuthContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
@@ -22,6 +24,7 @@ export default function Page() {
         password: password,
       },)
       localStorage.setItem("token", response.auth_token)
+      setIsAuthenticated(true)
       push("/")
     } catch (error: any) {
       toast.error('Пароль или логин не правильные', {

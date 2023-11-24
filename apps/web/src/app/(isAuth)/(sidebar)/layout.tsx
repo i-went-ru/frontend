@@ -14,7 +14,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     const { push } = useRouter();
-    const { isAuthenticated, isLoading, setReset } = useContext(AuthContext);
+    const { isAuthenticated, isLoading, setIsAuthenticated } = useContext(AuthContext);
     const [navigation, setNavigation] = useState([])
     if (isLoading) {
         return <Spinner/>
@@ -26,6 +26,7 @@ export default function RootLayout({
         <NavigationProvider navigation={navigation} setNavigation={setNavigation}>
             <Sidebar navigations={navigation} logout={() => {
                 localStorage.removeItem("token")
+                setIsAuthenticated(false)
                 push("/")
             }} LinkComponent={Link}>
                 {children}

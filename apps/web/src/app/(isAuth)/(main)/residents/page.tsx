@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import useSWR from "swr";
-import { Button, CardResident1, Footer, Header, Input, SearchIcon, Select } from "ui";
+import { Button, CardResident1, Footer, Header, Input, SearchIcon, Select, Spinner } from "ui";
 import { fetcherSWR } from "../../../../utils/fetch";
 
 interface Resident {
@@ -50,17 +50,21 @@ export default function Page() {
                         </div>
                     </div>
                 </section>
-                <div className="my-8 grid grid-cols-4 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-2 lg:gap-x-8">
-                    {isLoading ? "loading" : ""}
-                    {!isLoading && data ?
-                        data.map((resident, index) => (
-                            <CardResident1 name={resident.name} key={index} description={resident.description}
-                                image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                                labels={resident.tags} />
-                        ))
-                        : ""
-                    }
-                </div>
+                {isLoading ? <Spinner /> :
+
+                    <div className="my-8 grid grid-cols-4 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-2 lg:gap-x-8">
+
+                        {!isLoading && data ?
+                            data.map((resident, index) => (
+                                <CardResident1 name={resident.name} key={index} description={resident.description}
+                                    image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+                                    labels={resident.tags} />
+                            ))
+                            : ""
+                        }
+                    </div>
+                }
+
             </div>
         </div>
     );
