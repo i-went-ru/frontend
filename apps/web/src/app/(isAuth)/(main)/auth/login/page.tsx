@@ -11,8 +11,9 @@ interface Token {
   auth_token: string
 }
 export default function Page() {
+
   const { push } = useRouter();
-  const {setIsAuthenticated} = useContext(AuthContext)
+  const {setIsAuthenticated, getCurrentUser} = useContext(AuthContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
@@ -25,6 +26,7 @@ export default function Page() {
       },)
       localStorage.setItem("token", response.auth_token)
       setIsAuthenticated(true)
+      await getCurrentUser()
       push("/")
     } catch (error: any) {
       toast.error('Пароль или логин не правильные', {
